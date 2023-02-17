@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const CourseSchema = new Schema({
+const CourseSchema = new mongoose.Schema({
     courseID: {
         type: String,
         required: true, 
