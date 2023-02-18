@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { Timestamp } = mongoose.Types;
 
 const SubmissionSchema = new mongoose.Schema({
     email: {
@@ -24,29 +25,33 @@ const SubmissionSchema = new mongoose.Schema({
     }
 })
 
-const ClassworkSchema = new mongoose.Schema({
-    classworkID: {
-        type: String,
-        required: true, 
-        unique: true
-    }, 
+const ClassworkSchema = new mongoose.Schema({ 
     courseID: {
         type: String, 
         required: true,
     }, 
     submissionType: {
         type: String,  
-        enum: ['FILE', 'TEXT']
+        enum: ['FILE', 'TEXT'],
+        required: true
     },
-    dueDate: {
+    startDate: {
+        type: Date,
+        required: true
+    },
+    endDate: {
         type: Date, 
-        required: true,
+        required: true
+    }, 
+    facultyEmail: {
+        type: String, 
+        required: true
     },
     submissions: {
         type: [SubmissionSchema],
         required: true
     }
-})
+}, {collection: "classwork"})
 
-const Classwork = new mongoose.model("Classwork", ClassworkSchema);
+const Classwork = mongoose.model("classwork", ClassworkSchema);
 module.exports = Classwork;

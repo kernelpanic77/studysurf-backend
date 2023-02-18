@@ -5,20 +5,20 @@ const CourseSchema = new mongoose.Schema({
         type: String,
         required: true, 
         unique: true
-    }, 
-    universityID: {
-        type: String,
-        required: true 
-    }, 
+    },  
+    courseName: {
+        type: String, 
+        required: true
+    },
     domain: {
         type: String,
-        enum: ['MATH', 'CHEM', 'PHY', 'CS'],
+        enum: ['MATH', 'CHEM', 'PHY', 'CS', "BIO"],
         required: true
     }, 
     gist: {
         type: String, 
     }
-})
+}, {collection: "course"})
 
-const Course = new mongoose.model("Course", CourseSchema);
+const Course = mongoose.model("course", CourseSchema);
 module.exports = Course;
